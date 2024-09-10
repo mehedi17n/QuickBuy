@@ -1,0 +1,68 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/favoriteIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_favorite_border"/>
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productImage"
+        android:justificationMode="inter_word"
+        android:maxLines="@integer/material_motion_duration_long_1"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/productPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productName"
+        android:justificationMode="inter_word"
+        android:maxLines="@integer/material_motion_duration_long_1"
+        android:layout_marginTop="4dp"
+        android:textSize="14sp"
+        android:textColor="@android:color/holo_green_dark"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/productDescription"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_below="@id/productImage"-->
+<!--        android:text="Description"-->
+<!--        android:justificationMode="inter_word"-->
+<!--        android:maxLines="@integer/material_motion_duration_long_1"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:numStars="5"-->
+<!--        android:stepSize="0.5"-->
+<!--        android:isIndicator="true"/>-->
+
+<!--    <RatingBar-->
+<!--        android:id="@+id/productRating"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_below="@id/productImage"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:numStars="5"-->
+<!--        android:stepSize="0.5"-->
+<!--        android:isIndicator="true"/>-->
+</RelativeLayout>

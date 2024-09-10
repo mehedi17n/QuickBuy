@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">QuickBuy</string>
+    <string name="sign_up_text">Don’t have an account? <b><font color='#6F4F38'>Sign Up</font></b></string>
+
+    <string name="welcome_title"> The <b><font color='#6F4F38'>Fashion App</font></b> That Makes You Look Your Best </string>
+
+    <string name="welcome_text">With <b><font color='#6F4F38'>QuickBuy</font></b> you will find new cloths from various countries and regions of the world</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="15dp"
+    tools:context=".WelcomeActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/welcome_pic" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_title"
+        android:fontFamily="@font/axiforma_bold"
+        android:layout_marginTop="20dp"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:justificationMode="inter_word"
+        android:lineSpacingExtra="4dp"
+        android:lineSpacingMultiplier="1.2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/welcome_text"
+        android:fontFamily="@font/axiforma_light"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:justificationMode="inter_word"
+        android:lineSpacingExtra="4dp"
+        android:lineSpacingMultiplier="1.2" />
+
+    <Button
+        android:id="@+id/getStartedButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:text="Get Started"
+        android:background="@drawable/button_color"
+        android:fontFamily="@font/axiforma_bold" />
+
+    <Button
+        android:id="@+id/welcomeLoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:text="Login"
+        android:background="@drawable/button_color"
+        android:fontFamily="@font/axiforma_bold" />
+
+</LinearLayout>
