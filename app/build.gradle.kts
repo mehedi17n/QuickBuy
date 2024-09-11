@@ -45,6 +45,7 @@ dependencies {
     implementation (libs.lottie)
     implementation (libs.shimmer)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.dotsindicator)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
