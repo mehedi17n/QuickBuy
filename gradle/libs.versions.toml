@@ -18,8 +18,10 @@ converterGson = "2.9.0"
 retrofit = "2.11.0"
 shimmer = "0.5.0"
 lifecycleViewmodelKtx = "2.8.5"
+viewpager2 = "1.1.0"
 
 [libraries]
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 dotsindicator = { module = "com.tbuonomo:dotsindicator", version.ref = "dotsindicator" }
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
