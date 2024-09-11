@@ -43,7 +43,6 @@ class ProductsAdapter(
             }
             // Assign a unique transition name using the product id or position
             image.transitionName = "product_image_$position"
-
         }
     }
 

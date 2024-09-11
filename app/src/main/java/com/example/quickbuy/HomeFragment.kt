@@ -2,12 +2,11 @@ package com.example.quickbuy
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,13 +17,18 @@ import com.example.quickbuy.ui.ItemSpacingDecoration
 import com.example.quickbuy.ui.MainViewModel
 import com.example.quickbuy.ui.ProductDetails
 import com.example.quickbuy.ui.ProductsAdapter
+import com.example.quickbuy.ui.CategoriesAdapter // Import the CategoriesAdapter
+import com.example.quickbuy.ui.CategoryDetailsActivity
 import kotlinx.coroutines.launch
+
 
 class HomeFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var productRecyclerView: RecyclerView
+    private lateinit var categoryRecyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
-    private lateinit var adapter: ProductsAdapter
+    private lateinit var productAdapter: ProductsAdapter
+    private lateinit var categoryAdapter: CategoriesAdapter
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
@@ -39,23 +43,41 @@ class HomeFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        recyclerView = view.findViewById(R.id.productRecyclerView)
+        // Initialize UI components
+        productRecyclerView = view.findViewById(R.id.productRecyclerView)
+//        categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView)
         progressBar = view.findViewById(R.id.progressBar)
 
-        // Setting up the RecyclerView with a GridLayoutManager
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.addItemDecoration(ItemSpacingDecoration(horizontal = 4, vertical = 16))
-        recyclerView.setPadding(0, 0, 0, 80)
+        // Setting up the RecyclerView for products with a GridLayoutManager
+        productRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        productRecyclerView.addItemDecoration(ItemSpacingDecoration(horizontal = 4, vertical = 16))
+        productRecyclerView.setPadding(0, 0, 0, 80)
+
+        // Setting up the RecyclerView for categories with a LinearLayoutManager
+        categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         handleLoading()
 
+        // Observe products data
         lifecycleScope.launch {
             viewModel.productsResponse.collect { response ->
                 if (response != null) {
-                    adapter = ProductsAdapter(response) { item ->
+                    productAdapter = ProductsAdapter(response) { item ->
                         navigateToDetails(item)
                     }
-                    recyclerView.adapter = adapter
+                    productRecyclerView.adapter = productAdapter
+                }
+            }
+        }
+
+        // Observe categories data
+        lifecycleScope.launch {
+            viewModel.categories.collect { categories ->
+                if (categories.isNotEmpty()) {
+                    categoryAdapter = CategoriesAdapter(categories) { category ->
+                        navigateToCategoryDetails(category.toString())
+                    }
+                    categoryRecyclerView.adapter = categoryAdapter
                 }
             }
         }
@@ -65,6 +87,14 @@ class HomeFragment : Fragment() {
         // Navigating to the ProductDetails Activity with the selected Product data
         val intent = Intent(requireContext(), ProductDetails::class.java).apply {
             putExtra("PRODUCT", item)
+        }
+        startActivity(intent)
+    }
+
+    private fun navigateToCategoryDetails(category: String) {
+        // Navigating to the CategoryDetailsActivity with the selected Category data
+        val intent = Intent(requireContext(), CategoryDetailsActivity::class.java).apply {
+            putExtra("CATEGORY", category)
         }
         startActivity(intent)
     }

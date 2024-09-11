@@ -1,5 +1,7 @@
 package com.example.quickbuy.service
 
+import com.example.quickbuy.data.Category
+import com.example.quickbuy.data.categories.CategoryResponse
 import com.example.quickbuy.data.payloads.CreateProductPayload
 import com.example.quickbuy.data.products.Product
 import com.example.quickbuy.data.products.ProductsResponse
@@ -24,8 +26,9 @@ interface ShopService {
         @Path(value = "id") id: String?,
     ): Product
 
-    @GET("categories")
-    suspend fun getAllCategories(): Product
+    @GET("products/categories")
+//    suspend fun getAllCategories(): Product
+    suspend fun getAllCategories(): CategoryResponse
 
     @GET("products/category/{categoryName}")
     suspend fun getProductsByCategory(
@@ -55,5 +58,7 @@ interface ShopService {
     suspend fun deleteProduct(
         @Path(value = "id") id: String?,
     ): Product
+
+    abstract fun getCategories(): Any
 
 }
