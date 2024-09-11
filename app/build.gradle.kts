@@ -46,6 +46,7 @@ dependencies {
     implementation (libs.shimmer)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.dotsindicator)
+    implementation (libs.androidx.viewpager2)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
