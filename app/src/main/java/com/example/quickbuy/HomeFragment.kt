@@ -21,7 +21,6 @@ import com.example.quickbuy.ui.CategoriesAdapter // Import the CategoriesAdapter
 import com.example.quickbuy.ui.CategoryDetailsActivity
 import kotlinx.coroutines.launch
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var productRecyclerView: RecyclerView
@@ -41,11 +40,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize ViewModel
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         // Initialize UI components
         productRecyclerView = view.findViewById(R.id.productRecyclerView)
-//        categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView)
+        categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView) // Initialize Category RecyclerView
         progressBar = view.findViewById(R.id.progressBar)
 
         // Setting up the RecyclerView for products with a GridLayoutManager
@@ -53,12 +53,12 @@ class HomeFragment : Fragment() {
         productRecyclerView.addItemDecoration(ItemSpacingDecoration(horizontal = 4, vertical = 16))
         productRecyclerView.setPadding(0, 0, 0, 80)
 
-        // Setting up the RecyclerView for categories with a LinearLayoutManager
+        // Setting up the RecyclerView for categories with a LinearLayoutManager (Horizontal scrolling)
         categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        handleLoading()
+        handleLoading() // Handle loading state
 
-        // Observe products data
+        // Observe products data and set up the ProductAdapter
         lifecycleScope.launch {
             viewModel.productsResponse.collect { response ->
                 if (response != null) {
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // Observe categories data
+        // Observe categories data and set up the CategoriesAdapter
         lifecycleScope.launch {
             viewModel.categories.collect { categories ->
                 if (categories.isNotEmpty()) {
@@ -100,13 +100,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleLoading() {
+        // Handling loading state using ViewModel
         lifecycleScope.launch {
             viewModel.isLoading.collect { isLoading ->
-                if (isLoading) {
-                    progressBar.visibility = View.VISIBLE
-                } else {
-                    progressBar.visibility = View.GONE
-                }
+                progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
             }
         }
     }

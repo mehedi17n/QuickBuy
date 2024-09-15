@@ -135,23 +135,32 @@
                 android:layout_gravity="end" />
         </LinearLayout>
 
-        <HorizontalScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:scrollbars="horizontal"
+            android:layout_gravity="center"/>
 
-            <LinearLayout
-                android:id="@+id/categoryRecyclerViewContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+<!--        <HorizontalScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:scrollbars="none"-->
+<!--            android:layout_marginTop="10dp">-->
 
-                <!-- Categories will be dynamically added here -->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/categoryRecyclerViewContainer"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
 
-            </LinearLayout>
+<!--                &lt;!&ndash; Categories will be dynamically added here &ndash;&gt;-->
 
-        </HorizontalScrollView>
+<!--            </LinearLayout>-->
+
+<!--        </HorizontalScrollView>-->
 
         <!-- Products Section -->
         <TextView
