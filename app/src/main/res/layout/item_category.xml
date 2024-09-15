@@ -5,18 +5,29 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/categoryImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:background="@drawable/bg_rounded" />
-
-    <TextView
-        android:id="@+id/categoryName"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textSize="14sp"
-        android:gravity="center" />
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/categoryImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_rounded"
+            android:src="@drawable/ic_dress"
+            android:tint="@color/primaryColor"
+            android:padding="12dp" />
+
+        <TextView
+            android:id="@+id/categoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/axiforma_regular"
+            android:text="Dress"
+            android:gravity="center" />
+    </LinearLayout>
+
 </LinearLayout>
