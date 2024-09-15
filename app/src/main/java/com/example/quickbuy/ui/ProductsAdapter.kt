@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -20,7 +21,7 @@ class ProductsAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.productName)
         val price: TextView = itemView.findViewById(R.id.productPrice)
-//        val description: TextView = itemView.findViewById(R.id.productDescription)
+        val rating: RatingBar = itemView.findViewById(R.id.productRating)
         val image: ImageView = itemView.findViewById(R.id.productImage)
     }
 
@@ -37,7 +38,7 @@ class ProductsAdapter(
         holder.apply {
             title.text = product.title
             price.text = "${product.price} TK"
-//            description.text = product.description
+            rating.rating = (product.rating?.rate?.toFloat() ?: null)!!
             image.load(product.image) {
                 crossfade(true)
             }

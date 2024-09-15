@@ -20,8 +20,8 @@ import com.example.quickbuy.ui.ItemSpacingDecoration
 import com.example.quickbuy.ui.MainViewModel
 import com.example.quickbuy.ui.ProductDetails
 import com.example.quickbuy.ui.ProductsAdapter
-import com.example.quickbuy.ui.CategoriesAdapter
-import com.example.quickbuy.ui.CategoryDetailsActivity
+import com.example.quickbuy.category.CategoriesAdapter
+import com.example.quickbuy.category.CategoryDetailsActivity
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import kotlinx.coroutines.launch
 
@@ -74,8 +74,9 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         // Set up RecyclerView with GridLayoutManager and item decoration
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.addItemDecoration(ItemSpacingDecoration(horizontal = 4, vertical = 16))
+//        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.addItemDecoration(ItemSpacingDecoration(horizontal = 8, vertical = 1))
         recyclerView.setPadding(0, 0, 0, 80)
 
         // Setting up the RecyclerView for categories with a LinearLayoutManager (Horizontal scrolling)
@@ -136,6 +137,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    //Banner
     private fun setupBanner() {
         // Sample banner images
         val imageUrls = listOf(

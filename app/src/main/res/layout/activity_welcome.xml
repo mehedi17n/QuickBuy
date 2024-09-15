@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/welcome_title"
-        android:fontFamily="@font/axiforma_bold"
+        android:fontFamily="@font/inter_bold"
         android:layout_marginTop="20dp"
         android:textSize="24sp"
         android:gravity="center"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/welcome_text"
-        android:fontFamily="@font/axiforma_light"
+        android:fontFamily="@font/inter_regular"
         android:textSize="15sp"
         android:gravity="center"
         android:justificationMode="inter_word"
@@ -48,7 +48,7 @@
         android:textColor="@color/white"
         android:text="Get Started"
         android:background="@drawable/button_color"
-        android:fontFamily="@font/axiforma_bold" />
+        android:fontFamily="@font/inter_semi_bold" />
 
     <Button
         android:id="@+id/welcomeLoginButton"
@@ -58,6 +58,6 @@
         android:textColor="@color/white"
         android:text="Login"
         android:background="@drawable/button_color"
-        android:fontFamily="@font/axiforma_bold" />
+        android:fontFamily="@font/inter_semi_bold" />
 
 </LinearLayout>

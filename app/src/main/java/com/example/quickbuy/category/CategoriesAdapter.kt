@@ -1,4 +1,4 @@
-package com.example.quickbuy.ui
+package com.example.quickbuy.category
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.quickbuy.R
-import com.example.quickbuy.ui.ProductsAdapter.ViewHolder
 
 class CategoriesAdapter(
     private var categoryList: List<String?>,
@@ -35,22 +33,25 @@ class CategoriesAdapter(
             }
         }
 
+        // Get both the icon and text for the category
+        val (iconRes, categoryName) = getCategoryInfo(category)
+
         // Bind the text and image for each category
-        holder.textView.text = category
-        holder.imageView.setImageResource(getCategoryIcon(category))
+        holder.textView.text = categoryName
+        holder.imageView.setImageResource(iconRes)
     }
 
     override fun getItemCount(): Int = categoryList.size
 
-    // Helper function to map categories to icons
-    private fun getCategoryIcon(category: String?): Int {
+    // Helper function to map categories to icons and text
+    private fun getCategoryInfo(category: String?): Pair<Int, String> {
         return when (category) {
-            "Jewellery" -> R.drawable.ic_pant
-            "Electronics" -> R.drawable.ic_shirt
-            "Clothing" -> R.drawable.ic_shirt
-            "Shoes" -> R.drawable.ic_shirt
-            // Add more categories with appropriate icons
-            else -> R.drawable.ic_shirt // Default icon
+            "jewelery" -> Pair(R.drawable.ic_jewelry, "Jewellery")
+            "electronics" -> Pair(R.drawable.ic_electronics, "Electronics")
+            "men's clothing" -> Pair(R.drawable.ic_shirt, "Men's\nClothing")
+            "women's clothing" -> Pair(R.drawable.ic_dress, "Women's\nClothing")
+            // Add more categories with appropriate icons and names
+            else -> Pair(R.drawable.ic_other, "Other") // Default icon and text
         }
     }
 }

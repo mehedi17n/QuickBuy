@@ -1,4 +1,4 @@
-package com.example.quickbuy.ui
+package com.example.quickbuy.category
 
 import android.os.Bundle
 import android.widget.TextView

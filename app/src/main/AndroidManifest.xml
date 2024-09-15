@@ -15,10 +15,10 @@
         android:theme="@style/Theme.QuickBuy"
         tools:targetApi="31">
         <activity
-            android:name=".ui.AllCategoriesActivity"
+            android:name=".category.AllCategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.CategoryDetailsActivity"
+            android:name=".category.CategoryDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ProductDetails"

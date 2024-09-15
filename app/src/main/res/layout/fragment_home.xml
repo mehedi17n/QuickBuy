@@ -1,193 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_marginHorizontal="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".HomeFragment" >
+    android:orientation="vertical"
+    tools:context=".HomeFragment">
 
-    <LinearLayout
+    <!-- Scrollable Content Section -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <!-- Location and Notification -->
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="20dp"
+            android:layout_height="match_parent">
 
+            <!-- Location and Notification -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Location"
+                        android:fontFamily="@font/inter_light_beta"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="310dp"
+                    android:tint="@color/darkGray"
+                    android:background="@drawable/bg_rounded"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_notification" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_location" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mirpur, Dhaka"
+                        android:fontFamily="@font/inter_regular"
+                        android:textSize="16sp"
+                        android:drawablePadding="4dp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_dropdown" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <!-- Banner ViewPager -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/bannerViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp" />
+
+            </RelativeLayout>
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dotsIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dotsColor="@color/lightGray"
+                android:layout_gravity="center"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="6dp"
+                app:dotsSpacing="2dp"
+                app:dotsWidthFactor="2.5"
+                app:selectedDotColor="@color/primaryColor" />
+
+            <!-- Categories Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_marginTop="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Location"
-                    android:fontFamily="@font/axiforma_light"
+                    android:text="Categories"
+                    android:fontFamily="@font/inter_semi_bold"
                     android:textSize="16sp" />
 
+                <ImageView
+                    android:id="@+id/seeAllCategories"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_other"
+                    android:layout_marginEnd="16dp"
+                    android:layout_gravity="end" />
+
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="310dp"
-                android:tint="@color/darkGray"
-                android:background="@drawable/bg_rounded"
-                android:padding="10dp"
-                android:src="@drawable/ic_notification" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoryRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:paddingBottom="10dp">
+                android:layout_marginTop="8dp"
+                android:scrollbars="horizontal"
+                android:layout_gravity="center" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_location"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Mirpur, Dhaka"
-                    android:fontFamily="@font/axiforma_regular"
+                    android:text="All Products"
+                    android:fontFamily="@font/inter_semi_bold"
                     android:textSize="16sp"
-                    android:drawablePadding="4dp" />
+                    android:layout_marginBottom="5dp" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_dropdown"/>
-
+                    android:id="@+id/seeAllProducts"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_other"
+                    android:layout_marginEnd="16dp"
+                    android:layout_gravity="end" />
             </LinearLayout>
 
-        </RelativeLayout>
-
-        <!-- Banner ViewPager -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp">
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/bannerViewPager"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="16dp"
-                android:clipToPadding="false"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp" />
-
-        </RelativeLayout>
-
-        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-            android:id="@+id/dotsIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:dotsColor="@color/lightGray"
-            android:layout_gravity="center"
-            app:dotsCornerRadius="8dp"
-            app:dotsSize="6dp"
-            app:dotsSpacing="2dp"
-            app:dotsWidthFactor="2.5"
-            app:selectedDotColor="@color/primaryColor" />
-
-        <!-- Categories Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_height="wrap_content"
-                android:text="Categories"
-                android:fontFamily="@font/axiforma_bold"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:scrollbars="vertical" />
 
-            <TextView
-                android:id="@+id/seeAllCategories"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See All"
-                android:fontFamily="@font/axiforma_bold"
-                android:textSize="14sp"
-                android:layout_marginStart="220dp"
-                android:textColor="@color/primaryColor"
-                android:layout_gravity="end" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoryRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:scrollbars="horizontal"
-            android:layout_gravity="center"/>
-
-<!--        <HorizontalScrollView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:scrollbars="none"-->
-<!--            android:layout_marginTop="10dp">-->
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/categoryRecyclerViewContainer"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                &lt;!&ndash; Categories will be dynamically added here &ndash;&gt;-->
-
-<!--            </LinearLayout>-->
-
-<!--        </HorizontalScrollView>-->
-
-        <!-- Products Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Products"
-            android:fontFamily="@font/axiforma_bold"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="10dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/productRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="See All Products"
-            android:textSize="14sp"
-            android:textColor="@color/primaryColor"
-            android:fontFamily="@font/axiforma_bold"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

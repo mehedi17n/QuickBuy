@@ -1,13 +1,6 @@
-package com.example.quickbuy.ui
+package com.example.quickbuy.category
 
-import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.quickbuy.R
-import kotlinx.coroutines.launch
 
 class AllCategoriesActivity : AppCompatActivity() {
 //
