@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
@@ -19,6 +20,8 @@ import com.example.quickbuy.ui.ItemSpacingDecoration
 import com.example.quickbuy.ui.MainViewModel
 import com.example.quickbuy.ui.ProductDetails
 import com.example.quickbuy.ui.ProductsAdapter
+import com.example.quickbuy.ui.CategoriesAdapter
+import com.example.quickbuy.ui.CategoryDetailsActivity
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import kotlinx.coroutines.launch
 
@@ -30,6 +33,8 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
     private lateinit var bannerViewPager: ViewPager2
     private lateinit var dotsIndicator: DotsIndicator
+    private lateinit var categoryAdapter: CategoriesAdapter
+    private lateinit var categoryRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +53,8 @@ class HomeFragment : Fragment() {
         progressBar = view.findViewById(R.id.progressBar)
         bannerViewPager = view.findViewById(R.id.bannerViewPager)
         dotsIndicator = view.findViewById(R.id.dotsIndicator)
+        categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView)
+
 
         // Setup RecyclerView
         setupRecyclerView()
@@ -58,6 +65,9 @@ class HomeFragment : Fragment() {
         // Observe product data
         observeProducts()
 
+        // Observe category data
+        observeCategories()
+
         // Setup the banner with images and dots indicator
         setupBanner()
     }
@@ -67,6 +77,9 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.addItemDecoration(ItemSpacingDecoration(horizontal = 4, vertical = 16))
         recyclerView.setPadding(0, 0, 0, 80)
+
+        // Setting up the RecyclerView for categories with a LinearLayoutManager (Horizontal scrolling)
+        categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 
     private fun observeProducts() {
@@ -83,10 +96,33 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun observeCategories() {
+        // Observe categories data and set up the CategoriesAdapter
+        lifecycleScope.launch {
+            viewModel.categories.collect { categories ->
+                if (categories.isNotEmpty()) {
+                    categoryAdapter = CategoriesAdapter(categories) { category ->
+                        navigateToCategoryDetails(category.toString())
+                    }
+                    categoryRecyclerView.adapter = categoryAdapter
+                }
+            }
+        }
+    }
+
+
     private fun navigateToDetails(item: Product) {
         // Navigate to ProductDetails activity
         val intent = Intent(requireContext(), ProductDetails::class.java).apply {
             putExtra("PRODUCT", item)
+        }
+        startActivity(intent)
+    }
+
+    private fun navigateToCategoryDetails(category: String) {
+        // Navigating to the CategoryDetailsActivity with the selected Category data
+        val intent = Intent(requireContext(), CategoryDetailsActivity::class.java).apply {
+            putExtra("CATEGORY", category)
         }
         startActivity(intent)
     }
