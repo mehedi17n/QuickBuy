@@ -10,7 +10,6 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -18,10 +17,12 @@ import coil.load
 import com.example.quickbuy.data.products.Product
 import com.example.quickbuy.ui.ItemSpacingDecoration
 import com.example.quickbuy.ui.MainViewModel
-import com.example.quickbuy.ui.ProductDetails
-import com.example.quickbuy.ui.ProductsAdapter
+import com.example.quickbuy.products.ProductDetails
+import com.example.quickbuy.products.ProductsAdapter
 import com.example.quickbuy.category.CategoriesAdapter
 import com.example.quickbuy.category.CategoryDetailsActivity
+import com.example.quickbuy.category.AllCategoriesActivity // New activity for all categories
+import com.example.quickbuy.products.AllProductsActivity // New activity for all products
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import kotlinx.coroutines.launch
 
@@ -35,6 +36,8 @@ class HomeFragment : Fragment() {
     private lateinit var dotsIndicator: DotsIndicator
     private lateinit var categoryAdapter: CategoriesAdapter
     private lateinit var categoryRecyclerView: RecyclerView
+    private lateinit var seeAllCategories: ImageView
+    private lateinit var seeAllProducts: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +57,8 @@ class HomeFragment : Fragment() {
         bannerViewPager = view.findViewById(R.id.bannerViewPager)
         dotsIndicator = view.findViewById(R.id.dotsIndicator)
         categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView)
-
+        seeAllCategories = view.findViewById(R.id.seeAllCategories)
+        seeAllProducts = view.findViewById(R.id.seeAllProducts)
 
         // Setup RecyclerView
         setupRecyclerView()
@@ -70,21 +74,20 @@ class HomeFragment : Fragment() {
 
         // Setup the banner with images and dots indicator
         setupBanner()
+
+        // Set click listeners
+        setOnClickListeners()
     }
 
     private fun setupRecyclerView() {
-        // Set up RecyclerView with GridLayoutManager and item decoration
-//        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.addItemDecoration(ItemSpacingDecoration(horizontal = 8, vertical = 1))
         recyclerView.setPadding(0, 0, 0, 80)
 
-        // Setting up the RecyclerView for categories with a LinearLayoutManager (Horizontal scrolling)
         categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 
     private fun observeProducts() {
-        // Collect product data from ViewModel
         lifecycleScope.launch {
             viewModel.productsResponse.collect { response ->
                 if (response != null) {
@@ -98,7 +101,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeCategories() {
-        // Observe categories data and set up the CategoriesAdapter
         lifecycleScope.launch {
             viewModel.categories.collect { categories ->
                 if (categories.isNotEmpty()) {
@@ -111,9 +113,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun navigateToDetails(item: Product) {
-        // Navigate to ProductDetails activity
         val intent = Intent(requireContext(), ProductDetails::class.java).apply {
             putExtra("PRODUCT", item)
         }
@@ -121,7 +121,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToCategoryDetails(category: String) {
-        // Navigating to the CategoryDetailsActivity with the selected Category data
         val intent = Intent(requireContext(), CategoryDetailsActivity::class.java).apply {
             putExtra("CATEGORY", category)
         }
@@ -129,7 +128,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleLoading() {
-        // Observe loading state from ViewModel and update progress bar visibility
         lifecycleScope.launch {
             viewModel.isLoading.collect { isLoading ->
                 progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -137,16 +135,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-    //Banner
     private fun setupBanner() {
-        // Sample banner images
         val imageUrls = listOf(
             R.drawable.banner1,
             R.drawable.banner2,
             R.drawable.banner3
         )
 
-        // Prepare list of ImageView for ViewPager2
         val imageViews = imageUrls.map { imageUrl ->
             ImageView(requireContext()).apply {
                 layoutParams = ViewGroup.LayoutParams(
@@ -161,22 +156,30 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // Set up the ViewPager2 with custom adapter
         bannerViewPager.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
                 return object : RecyclerView.ViewHolder(imageViews[viewType]) {}
             }
 
-            override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-                // No additional binding needed as images are already loaded
-            }
+            override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {}
 
             override fun getItemCount(): Int = imageUrls.size
 
             override fun getItemViewType(position: Int): Int = position
         }
 
-        // Attach the DotsIndicator to the ViewPager2
         dotsIndicator.setViewPager2(bannerViewPager)
+    }
+
+    private fun setOnClickListeners() {
+        seeAllCategories.setOnClickListener {
+            val intent = Intent(requireContext(), AllCategoriesActivity::class.java)
+            startActivity(intent)
+        }
+
+        seeAllProducts.setOnClickListener {
+            val intent = Intent(requireContext(), AllProductsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

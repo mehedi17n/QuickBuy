@@ -1,12 +1,10 @@
-package com.example.quickbuy.ui
+package com.example.quickbuy.products
 
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import coil.load
 import com.example.quickbuy.R
 import com.example.quickbuy.data.products.Product

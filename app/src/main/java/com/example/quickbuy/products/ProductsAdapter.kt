@@ -1,4 +1,4 @@
-package com.example.quickbuy.ui
+package com.example.quickbuy.products
 
 import android.view.LayoutInflater
 import android.view.View

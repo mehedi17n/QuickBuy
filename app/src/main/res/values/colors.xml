@@ -4,6 +4,10 @@
     <color name="black2">#353232</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primaryColor" >#6F4F38</color>
+    <color name="secondaryColor" >#1F2029</color>
+    <color name="secondaryColor2" >#797979</color>
+    <color name="secondaryColor3" >#EDEDED</color>
+    <color name="nav_bg"> #1F2029 </color>
     <color name="bg"> #F3F6F8 </color>
     <color name="lightGray" >#AAAAAA</color>
     <color name="darkGray" >#444444</color>
