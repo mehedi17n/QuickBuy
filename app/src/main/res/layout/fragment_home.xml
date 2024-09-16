@@ -137,6 +137,8 @@
                     android:layout_height="25dp"
                     android:src="@drawable/ic_other"
                     android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_gravity="end" />
 
             </LinearLayout>
@@ -171,6 +173,8 @@
                     android:layout_height="25dp"
                     android:src="@drawable/ic_other"
                     android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_gravity="end" />
             </LinearLayout>
 
